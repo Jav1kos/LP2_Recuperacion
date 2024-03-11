@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta Vuelo</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Formulario de Ventas</h1>
+        <div class="row">
+            <div class="card col-6">
+                <div class="card-header">
+                    <h1 class="text-center my-5">VIVAAIR.COM</h1>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label" for="origen">Ciudad Origen:</label>
+                                    <select class="form-select" id="origen" name="origen" required>
+                                        <option value="">Elegir una ciudad</option>
+                                        <!-- Iterar sobre la lista de ciudades y generar las opciones -->
+                                        <th:block th:each="ciudad : ${ciudad_origen}">
+                                            <option th:value="${ciudad.codigo_postal}" th:text="${ciudad.nombre}"></option>
+                                        </th:block>
+                                    </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="fecha_salida">Fecha Salida:</label>
+                                    <input type="date" class="form-control" id="fecha_salida" name="fecha_salida" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="comprador">Nombre Comprador:</label>
+                                    <input type="text" class="form-control" id="nombre_comprador" name="nombre_comprador" required>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-6">
+                <div class="card-header">
+                    <h1 class="text-center my-5">VENTA DE BOLETOS</h1>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label" for="destino">Ciudad Destino:</label>
+                                    <select class="form-select" id="destino" name="destino" required>
+                                        <option value="">Elegir una ciudad</option>
+                                        <!-- Iterar sobre la lista de ciudades y generar las opciones -->
+                                        <th:block th:each="ciudad : ${ciudad_destino}">
+                                            <option th:value="${ciudad.codigo_postal}" th:text="${ciudad.nombre}"></option>
+                                        </th:block>
+                                    </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="fecha_retorno">Fecha Retorno:</label>
+                                    <input type="date" class="form-control" id="fecha_retorno" name="fecha_retorno" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="cantidad">Cantidad:</label>
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="col-2 ms-auto">
+                        <button type="submit" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-3">
+        <div class="card">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered border-dark">
+                    <thead class="table-dark">
+                        <tr class="text-center align-middle">
+                            <td>Ciudad<br>Origen</td>
+                            <td>Ciudad<br>Destino</td>
+                            <td>Fecha<br>Salida</td>
+                            <td>Fecha<br>Retorno</td>
+                            <td>Comprador</td>
+                            <td>Cantidad</td>
+                            <td>Sub-Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="d : ${lista_detalles}" class="text-center">
+                            <td th:text="${d.codigo_postal_origen.nombre}"></td>
+                            <td th:text="${d.codigo_postal_destino.nombre}"></td>
+                            <td th:text="${d.fecha_viaje}"></td>
+                            <td th:text="${d.fecha_retorno}"></td>
+                            <td th:text="${d.venta.nombre_comprador}"></td>
+                            <td th:text="${d.cantidad}"></td>
+                            <td th:text="${d.sub_total}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn btn-danger col-2">Comprar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
