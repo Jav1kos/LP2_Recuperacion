@@ -20,13 +20,13 @@ public class detalle_venta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "codigo_postal_destino", referencedColumnName ="codigo_postal")
-	private ciudad codigo_postal_destino;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "codigo_postal_origen", referencedColumnName ="codigo_postal")
 	private ciudad codigo_postal_origen;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_postal_destino", referencedColumnName ="codigo_postal")
+	private ciudad codigo_postal_destino;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_venta", referencedColumnName ="id")
@@ -37,62 +37,102 @@ public class detalle_venta {
 	private Date fecha_retorno;
 	private double sub_total;
 	
-	public int getIdDetalle() {
+	public int getId() {
 		return id;
 	}
-	public void setIdDetalle(int idDetalle) {
-		this.id = idDetalle;
+
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	
-	public ciudad getCodigoDestino() {
-		return codigo_postal_destino;
-	}
-	public void setCodigoDestino(ciudad codigo_destino) {
-		this.codigo_postal_destino = codigo_destino;
-	}
-	
-	public ciudad getCodigoOrigen() {
+
+
+
+	public ciudad getCodigo_postal_origen() {
 		return codigo_postal_origen;
 	}
-	public void setCodigoOrigen(ciudad codigo_origen) {
-		this.codigo_postal_origen = codigo_origen;
+
+
+
+	public void setCodigo_postal_origen(ciudad codigo_postal_origen) {
+		this.codigo_postal_origen = codigo_postal_origen;
 	}
-	
-	public venta getIdVenta() {
+
+
+
+	public ciudad getCodigo_postal_destino() {
+		return codigo_postal_destino;
+	}
+
+
+
+	public void setCodigo_postal_destino(ciudad codigo_postal_destino) {
+		this.codigo_postal_destino = codigo_postal_destino;
+	}
+
+
+
+	public venta getId_venta() {
 		return id_venta;
 	}
-	public void setIdVenta(venta id_venta) {
+
+
+
+	public void setId_venta(venta id_venta) {
 		this.id_venta = id_venta;
 	}
-	
+
+
+
 	public int getCantidad() {
 		return cantidad;
 	}
+
+
+
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	
-	public Date getFechaViaje() {
+
+
+
+	public Date getFecha_viaje() {
 		return fecha_viaje;
 	}
-	public void setFechaViaje(Date fecha_viaje) {
+
+
+
+	public void setFecha_viaje(Date fecha_viaje) {
 		this.fecha_viaje = fecha_viaje;
 	}
-	
-	public Date getFechaRetorno(){
+
+
+
+	public Date getFecha_retorno() {
 		return fecha_retorno;
 	}
-	public void setFechaRetorno(Date fecha_retorno) {
+
+
+
+	public void setFecha_retorno(Date fecha_retorno) {
 		this.fecha_retorno = fecha_retorno;
 	}
-	
-	public double getSubTotal() {
+
+
+
+	public double getSub_total() {
 		return sub_total;
 	}
-	public void setSubTotal(double sub_total) {
+
+
+
+	public void setSub_total(double sub_total) {
 		this.sub_total = sub_total;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
 		return "detalle_venta[id=" + id + 
